@@ -88,6 +88,9 @@ where lower(state) like 'd%' and lower(state) like '%i'
 -- JOINING BOTH TABLES
 
 -- total males and females
+sex_ratio = female/male
+population = male + female
+
 (select c.district, c.state, c.population, round(c.population/(c.sex_ratio+1),0) males, round((c.population*c.sex_ratio)/(c.sex_ratio+1),0) females from 
 (select a.district, a.state, a.sex_ratio, b.population from census_dataexploration..data1 a
 INNER JOIN census_dataexploration..data2 b
